@@ -71,7 +71,7 @@ body{
     overflow: hidden;
     margin: 0 auto;
     /* 블록박스가로중앙-마영오 */
-    outline: 2px solid red;
+/*    outline: 2px solid red;*/
 }
 
 /* 햄버거 막대공통 */
@@ -150,7 +150,7 @@ body{
     position: absolute;
     top: 0;
     right: 0;
-    background-color: #f7a623;
+/*    background-color: #f7a623;*/
 }
 
 /* 문구 박스 */

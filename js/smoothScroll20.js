@@ -2,7 +2,8 @@
 // 부드러운 스크롤 2020.12 버전
 // startSS()함수를 호출하여 사용
 function startSS() {
-    new SmoothScroll(document, 50, 12)//(target, speed, smooth) 수치 !!
+    new SmoothScroll(document, 60, 12)
+    /*new SmoothScroll(document, 스크롤내리는속도, 스크롤내렸을때 움직이는속도)*/
 }
 
 function SmoothScroll(target, speed, smooth) {

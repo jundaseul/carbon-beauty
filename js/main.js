@@ -1,92 +1,103 @@
-///// 카본뷰티 메인 페이지 JS - main.js //////////
+// 카본뷰티 메인 패이지JS - main.js ////////////
 // 로딩구역 //
-//DOMContentLoaded 이벤트 - html랜더링 시
+// DOMContentLoaded 이벤트 - html랜더링 시
 window.addEventListener("DOMContentLoaded",
     function () {
-        console.log("로딩완료!!");
 
-        // 부드러운 스크롤 함수 호출 !
+        console.log("로딩완료!!!!!!!!!!!!!!");
+
+        // 부드러운 스크롤 함수 호출!
         startSS();
 
 
 
-        // 배너버튼 마우스 오버/아웃시 class넣기/빼기
-        // 대상선정: .banbtn
-        var bbn = document.querySelector(".banbtn");
-        // 마우스 오버시 (.on넣고 .off빼기)
-        bbn.onmouseover = function () {
-            /// this는 나 자신 (.banbtn)
-            this.classList.add("on");
-            this.classList.remove("off");
-        }; /// mouseover /////////////
-        // 마우스 아웃시 (.off넣고 .on빼기)
-        bbn.onmouseout = function () {
-            /// this는 나 자신 (.banbtn)
-            this.classList.add("off");
-            this.classList.remove("on");
-        }; /// onmouseout /////////////
+
+        // 버튼공통 마우스 오버/아웃시 class넣기/빼기
+        // 대상선정 : .cmbtn
+        var bbn = document.querySelectorAll(".cmbtn");
+        // 마우스 오버시(.on 넣고 .off 빼기)
+        // 요소의 수만큼 for문 세팅하기
+        // for of문 (선택된 요소만큼 반복함) - of 뒤에 쓴 변수!
+        for (var x of bbn) { //x는 각 요소 자신!
+
+            x.onmouseover = function () {
+                // this는 나 자신(.banbtn)
+                this.classList.add("on");
+                this.classList.remove("off");
+            }; // 마우스오버 ///////////////////////////////
+
+            // 마우스 아웃시(.off 넣고 .on 빼기)
+            x.onmouseout = function () {
+                // this는 나 자신(.banbtn)
+                this.classList.add("off");
+                this.classList.remove("on");
+            }; // 마우스아웃 ///////////////////////////////
+
+        } //////////// for of 문 /////////////////////
 
 
-        //////////////////////////////////////////////////////
-        //////////////////////////// 패럴렉스 적용하기 /////////
-        ///////////////// vanilla JS - rellax.js 순수 JS 개발코딩 //
-        /// 깃허브 - https://github.com/dixonandmoe/rellax 
-        /// 데모 - https://dixonandmoe.com/rellax/
+
+
         //////////////////////////////////////////////////////////
+        /////////////////// 패럴렉스 적용하기 ///////////////////////
+        ////// vanilla JS - rellax.js 순수 JS개발코딩 //////////////
+        // 깃허브 - https://github.com/dixonandmoe/rellax
+        // 데모 - https://dixonandmoe.com/rellax/
+        /////////////////////////////////////////////////////////
 
-        /* 배너 버튼 */
+        //배너버튼
         var rellax = new Rellax('.rellax', {
-            speed: -2
-            /*center: false,
-            wrapper: null,
-            round: true,
-            vertical: true,
-            horizontal: false
-            여기는 디폴트 옵션 !!
-            */
-        }); //// rellax /////////
+            speed: -1
+        }); //////////// rellax //////////////////////////
 
-        /* 상품박스 양쪽 */
+
+        // 상품박스 양쪽
         var rellax2 = new Rellax('.rellax2', {
             speed: 5
-        });
+        }); //////////// rellax //////////////////////////
 
-        /* 상품박스 중앙 */
+
+        //상품박스 중앙
         var rellax3 = new Rellax('.rellax3', {
-            speed: -3
-        });
+            speed: -2
+        }); //////////// rellax //////////////////////////
 
-        ///////// 상품리스트 드래그 하기 ///////////////////
-        /////////// 대상선정: .gdsec>ul
+
+
+        /////// 상품리스트 드래그하기 ///////////////////
+        // 대상선정 : .gdsec ul
         $(".gdsec>ul").draggable({
-            axis: "x" //x축 고정
+            axis: "x" // x축고정
         });
 
-        //// 마우스버튼 클릭할때 이벤트 체크하여
-        //// 리스트 슬라이드 이동하기 
-        // 대상: .gdsec>ul
-        // 이벤트 : mouseup (마우스 왼쪽버튼을 눌렀다가 땔때 발생)
-        //        mouseleave (마우스가 영역을 벗어날때 발생)
-        // on(이벤트명, 함수)
-        // 이벤트명에 띄어쓰기로 여러이벤트를 사용할 수 있다 !
+        /// 마우스버튼 클릭할때 이벤트 체크하여 리스트 슬라이드 이동하기
+        // 대상선정 : .gdsec
+        // 이벤트 : mouseup (마우스왼쪽버튼을 눌렀다가 뗄때 발생)
+        //          mouseup (마우스가 영역을 벗어났을때 발생)
+        // on(이벤트명, 함수) -> 이벤트명에 띄어쓰기로 여러이벤트를 사용할 수 있다!
 
-        // 상품리스트박스 크기(슬라이드 하나의 단위!)
+        // 상품리스트 박스 크기(슬라이드 하나의 단위!)
         var gw = $(".gdsec").width();
-        console.log("기본크기:" + gw);
+        console.log("기본크기" + gw);
+
+
+
+
 
         $(".gdsec").on("mouseup mouseleave", function () {
-            // 1. 이벤트확인
-            console.log("나야나~!!!");
+            // 1.이벤트확인
+            //            console.log("나야나!");
 
             // 이동대상의 위치값
-            //            offset()은 화면 기준 left값
-            //            position()은 부모박스 기준 left값을 리턴함!
+            // offset() 화면기준 left값
+            // position()은 부모박스 기준 left값을 리턴함!
+
             var tgpos = $(".gdsec>ul").position().left;
+
             console.log("위치값:" + tgpos);
+            // 2.위치값 확인하여 이동하기
 
-            // 2. 위치값 확인하여 이동하기 
-
-            // 2페이지로 이동 //////////////////////
+            // 2페이지로 이동하기 /////////////////////////////
             if (
                 (tgpos < -gw * 0.1 && tgpos > -gw * 0.5) ||
                 (tgpos < -gw * 1.5 && tgpos > -gw * 1.9)
@@ -94,70 +105,78 @@ window.addEventListener("DOMContentLoaded",
                 $(".gdsec>ul").animate({
                     left: "-100%"
                 }, 800);
-            } //////////// if /////////////
+            } // if //////////////////
 
-            // 3페이지로 이동 //////////////////////
+            //3페이지로 이동하기/////////////////////////////
             else if (
                 tgpos < -gw * 1.1 && tgpos > -gw * 1.5
             ) {
                 $(".gdsec>ul").animate({
                     left: "-200%"
                 }, 800);
-            } //////////// else if /////////////
+            } // if //////////////////
 
-            // 1페이지로 이동 //////////////////////
+            // 1페이지 이동하기//////////////////////////////
             else if (
                 tgpos < -gw * 0.5 && tgpos > -gw * 0.9
             ) {
                 $(".gdsec>ul").animate({
-                    left: "0"
+                    left: "0%"
                 }, 800);
-            } //////////// if /////////////
+            } // if //////////////////
 
-            // 1페이지로 고정하기 //////////////////////
+            // 1페이지 고정하기//////////////////////////////
             else if (
                 tgpos > 0
             ) {
                 $(".gdsec>ul").animate({
-                    left: "0"
+                    left: "0%"
                 }, 400);
-            } //////////// if /////////////
+            } // if //////////////////
 
-            // 3페이지로 고정하기 //////////////////////
+            // 3페이지 고정하기//////////////////////////////
             else if (
-                tgpos > -2 * gw
+                tgpos < -2 * gw
             ) {
                 $(".gdsec>ul").animate({
-                    left: "-200"
+                    left: "-200%"
                 }, 400);
-            } //////////// if /////////////
+            } // if //////////////////
 
-            // 그 밖에 자기자리로 돌아오기 !! //////////
+            // 그밖에 자기자리로 돌아오기! /////////////
             else {
-                // 단위크기로 나눈수를 양수로 만들고 반올림하여 
-                // 결과적으로 0,1,2중 하나의 수만 나오게 함!!
-                var num = Math.round(Math.abs(tgpos / gw));
-                // Math.abs(양수/음수) -> 절대값 (양수로 나옴)
-                // Math.floor(소수자리수) -> 소수점버림!
-                // Math.round(소수자리수) -> 소수점반올림!
-                console.log("나눈수:" + num);
 
-                // 자기자리로 돌아가기 !!!!
+                // 단위 크기로 나눈수를 양수로 만들고 반올림하여 결과적으로 0,1,2중 하나의 수만 나오게함!
+                var num = Math.round(Math.abs(tgpos / gw));
+
+                // Math.abs(양수/음수) -> 절대값(양수로나옴)
+                // Math.floor(소수자리수) -> 소수점 버림
+                // Math.round(소수자리수) -> 소수점 반올림
+                console.log("나눈수!" + num);
+
+                // 자기자리로 돌아가기!
                 $(".gdsec>ul").animate({
                     left: (num * -100) + "%"
-                    //num*-100 의 결과는 0, -100, -200 중 하나 !!
+                    // num*-100 의 결과는 0, -100, -200 중 하나!
                 }, 400);
-            } ///////// else ////////////////
+
+            } // else //////////////////////////////
+
+        }); // 마우스이벤트함수 ////////////////////////////////
 
 
-        }); /// 마우스이벤트 함수 //////////////
 
-        // 위치값 셋팅
+        // 위치값 세팅 - 로드구역 아래는 전역변수라서 값이 찍힘 //////////////////////
         tgpos[0] = $("#blog").offset().top;
-        console.log("블로그영역위치 값:" + tgpos[0]);
+        console.log("블로그영역 위치값:" + tgpos[0]);
 
-    }); //////////////////////////// 로드 구역 //////////////////////////////////
-//////////////////////////////////////////////////////////////////////////
+        // 시작 기준값을 계산함! (원래 위치값 - 윈도우 절반)
+        tgpos[0] = tgpos[0] - winH / 2
+
+
+
+    }); //////////////////////////////////// 로드구역 ////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////
 
 
 ///////////////////////////////////////////////////
@@ -177,27 +196,101 @@ $(window).scroll(function () {
     // console.log("스위:"+scTop);
 
     // 블로그 영역 스크롤액션!
-    if (scTop > tgpos[0] - winH / 2 &&
-        scTop < tgpos[0]) {
+    if (scTop > tgpos[0] &&
+        scTop < tgpos[0] + 200) {
         console.log("움직여~!!");
-        $(".bb1 h3").css({left:(120-50)+"%"});
-        $(".bb2 h3").css({left:(20-50)+"%"});
-        
-        
+        $(".bb2 .mtxt2").css({
+            left: (320 - 50) + "px"
+        });
+        $(".bb3 .mtxt2").css({
+            left: (0 - 50) + "px"
+        });
+
+        /*carbon*/
+        $(".bb2 .mtxt1").css({
+            right: (320 - 50) + "px"
+        });
+        $(".bb1 .mtxt1").css({
+            right: (0 - 50) + "px"
+        });
+
+
     } //// if /////////////////
-    else if (scTop > tgpos[0]&&
-        scTop < tgpos[0]+200) {
+    else if (scTop > tgpos[0] + 200 &&
+        scTop < tgpos[0] + 400) {
         console.log("움직여~!!");
-        $(".bb1 h3").css({left:(120-100)+"%"});
-        $(".bb2 h3").css({left:(20-100)+"%"});
-        
-        
+        $(".bb2 .mtxt2").css({
+            left: (320 - 100) + "px"
+        });
+        $(".bb3 .mtxt2").css({
+            left: (0 - 100) + "px"
+        });
+
+        /*carbon*/
+        $(".bb2 .mtxt1").css({
+            right: (320 - 100) + "px"
+        });
+        $(".bb1 .mtxt1").css({
+            right: (0 - 100) + "px"
+        });
+
+
+    } //// else if /////////////////
+    else if (scTop > tgpos[0] + 400 &&
+        scTop < tgpos[0] + 600) {
+        console.log("움직여~!!");
+        $(".bb2 .mtxt2").css({
+            left: (320 - 150) + "px"
+        });
+        $(".bb3 .mtxt2").css({
+            left: (0 - 150) + "px"
+        });
+
+        /*carbon*/
+        $(".bb2 .mtxt1").css({
+            right: (320 - 150) + "px"
+        });
+        $(".bb1 .mtxt1").css({
+            right: (0 - 150) + "px"
+        });
+
+
+    } //// else if /////////////////
+    else if (scTop > tgpos[0] + 600 &&
+        scTop < tgpos[0] + 800) {
+        console.log("움직여~!!");
+        $(".bb2 .mtxt2").css({
+            left: (320 - 200) + "px"
+        });
+        $(".bb3 .mtxt2").css({
+            left: (0 - 200) + "px"
+        });
+
+        /*carbon*/
+        $(".bb2 .mtxt1").css({
+            right: (320 - 200) + "px"
+        });
+        $(".bb1 .mtxt1").css({
+            right: (0 - 200) + "px"
+        });
+
     } //// else if /////////////////
     else {
-        $(".bb1 h3").css({left:(120-100)+"%"});
-        $(".bb2 h3").css({left:(20-100)+"%"});
-        
-        
+        $(".bb2 .mtxt2").css({
+            left: (320) + "px"
+        });
+        $(".bb3 .mtxt2").css({
+            left: (0) + "px"
+        });
+
+        /*carbon*/
+        $(".bb2 .mtxt1").css({
+            right: (320) + "px"
+        });
+        $(".bb1 .mtxt1").css({
+            right: (0) + "px"
+        });
+
     } //// else /////////////////
 
 }); ////////// scroll ///////////////////
